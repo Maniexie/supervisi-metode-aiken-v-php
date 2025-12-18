@@ -10,7 +10,14 @@ if (isset($_SESSION['id_user'])) {
 // initialize variabel error sweet alert
 $error = null;
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die('Validasi CSRF Gagal!');
+    }
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -59,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-6">
 
                 <form action="" method="post">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                     <div class="mb-3">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" id="username" name="username" placeholder="" required
