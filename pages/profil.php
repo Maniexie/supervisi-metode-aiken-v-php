@@ -4,9 +4,9 @@ require_once __DIR__ . '/../pages/layouts/header.php';
 
 <!-- Cards/Content -->
 <section class="cards">
-    <div class="card">Data 1</div>
-    <div class="card">Data 2</div>
-    <div class="card">Data 3</div>
+    <div class="card">AKU ADALAH HALAMAN PROFIL1</div>
+    <div class="card">AKU ADALAH HALAMAN PROFIL2</div>
+    <div class="card">AKU ADALAH HALAMAN PROFIL3</div>
 </section>
 </div>
 </div>
