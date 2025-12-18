@@ -9,6 +9,25 @@ $allowedPages = [
 ];
 
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+
+switch ($page) {
+    case 'dashboard':
+        $title = "Dashboard";
+        // $content = "pages/dashboard.php";
+        break;
+    case 'login':
+        $title = "Login Page";
+        break;
+    case 'logout':
+        $title = "Logout Page";
+        break;
+    case 'forbidden':
+        $title = "Forbidden 403 Page";
+        break;
+    default:
+        $title = "404 Page Not Found";
+        break;
+}
 if (!isset($allowedPages[$page])) {
     echo "<h3>404 - Halaman tidak ditemukan</h3>";
     exit;
