@@ -1,7 +1,11 @@
 <?php
 require_once __DIR__ . '/../pages/layouts/header.php';
-?>
 
+if (!isset($_SESSION['id_user'])) {
+    header('Location: index.php?page=login');
+    exit;
+}
+?>
 <!-- Cards/Content -->
 <section class="cards">
     <div class="card">Data 1</div>

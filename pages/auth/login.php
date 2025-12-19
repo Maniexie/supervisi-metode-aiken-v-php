@@ -8,7 +8,8 @@ if (isset($_SESSION['id_user'])) {
 }
 
 // initialize variabel error sweet alert
-$error = null;
+$loginError = null;
+$loginSukses = false;
 
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -34,13 +35,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['role'] = $user['role'];
             $_SESSION['nama'] = $user['nama'];
 
-            header("Location: index.php?page=dashboard");
-            exit;
+            $_SESSION['login_success'] = 'Login berhasil!';
+
+            $loginSukses = true;
+            // header('Location: index.php?page=dashboard');
+
+        } else {
+            // jika password salah
+            $loginError = "Username atau password salah!";
         }
     }
 
     // jika gagal
-    $error = "Username atau password salah!";
+    $loginError = "Username atau password salah!";
 }
 ?>
 
@@ -100,17 +107,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } 
     </script>
 
-    <?php if ($error): ?>
+    <?php if ($loginError): ?>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             Swal.fire({
-                title: 'Login Gagal',
-                text: '<?= $error ?>',
-                icon: 'error',
-                confirmButtonText: 'OK'
+                title: "Loading",
+                timer: 1500,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Login Gagal",
+                    text: "<?= $loginError ?>",
+                    showConfirmButton: true,
+                    timer: 3000
+                });
             });
         </script>
     <?php endif; ?>
+
+    <?php if ($loginSukses): ?>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                title: "Loading",
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                timer: 1500
+            }).then(() => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Login Berhasil",
+                    text: "Selamat datang, <?= $_SESSION['nama'] ?>",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    window.location.href = "index.php?page=dashboard";
+                });
+            });
+        </script>
+    <?php endif; ?>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

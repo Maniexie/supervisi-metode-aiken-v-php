@@ -45,6 +45,7 @@ if ($_SESSION['role'] == 'kepala_sekolah') {
                 <li class="nav-item"><a href="index.php?page=dashboard" class="nav-link"
                         aria-current="page">Dashboard</a></li>
                 <li class="nav-item"><a href="index.php?page=profil" class="nav-link">Profil</a></li>
+                <li class="nav-item"><a href="index.php?page=daftar_aktor" class="nav-link">Daftar Aktor</a></li>
                 <li class="nav-item">
                     <a class="nav-link text-white d-flex justify-content-between align-items-center"
                         data-bs-toggle="collapse" href="#supervisi" role="button" aria-expanded="false"
