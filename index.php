@@ -11,6 +11,7 @@ $allowedPages = [
     'daftar_aktor' => 'pages/daftar_aktor/daftar_aktor.php',
     'edit_aktor' => 'pages/daftar_aktor/edit_aktor.php',
     'hapus_aktor' => 'pages/daftar_aktor/hapus_aktor.php',
+    'tambah_aktor' => 'pages/daftar_aktor/tambah_aktor.php',
 
     // Supervisi
     'kategori_item_penilaian' => 'pages/supervisi/kategori_item_penilaian.php',
@@ -50,6 +51,9 @@ switch ($page) {
         break;
     case 'edit_aktor':
         $title = "Edit Aktor Page";
+        break;
+    case 'tambah_aktor':
+        $title = "Tambah Aktor Page";
         break;
     case 'hapus_aktor':
         $title = "Hapus Aktor Page";

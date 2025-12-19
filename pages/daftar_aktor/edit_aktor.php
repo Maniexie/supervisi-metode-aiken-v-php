@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php if ($getDataAktor->num_rows > 0): ?>
             <?php $data = mysqli_fetch_assoc($getDataAktor); ?>
             <!-- Form -->
-            <form class="row g-2 needs-validation" novalidate method="post">
+            <form class="row g-2 needs-validation" method="post">
                 <input type="hidden" name="id_user" value="<?= $data['id_user'] ?>">
                 <div class="col-md-6">
                     <label for="nip" class="form-label">NIP</label>

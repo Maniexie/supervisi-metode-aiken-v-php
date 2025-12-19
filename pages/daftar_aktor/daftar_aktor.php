@@ -38,6 +38,9 @@ $no = $offset + 1; // nomor urut
 <section>
     <div class="content">
         <h2 class="content-title text-center">Daftar Aktor Supervisi</h2>
+        <div class="container" style="margin-bottom: -20px;">
+            <a href="index.php?page=tambah_aktor" class="btn btn-primary">Tambah Aktor</a>
+        </div>
         <div class="container mt-4 table-responsive" style="max-height: 700px; overflow-y: auto;">
             <table class="table table-striped table-hover" style="max-height:300px;">
                 <thead>

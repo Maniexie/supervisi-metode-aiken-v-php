@@ -20,7 +20,6 @@ $getKategoriGolongan = mysqli_query($koneksi, "SELECT * FROM k_golongan"); // me
         <h2 class="text-center">Profil (<span class="text-uppercase"><?= $_SESSION['role'] ?></span>)</h2>
         <!-- Form -->
         <form class="row g-2 needs-validation">
-            <input type="hidden" name="id_user" value="<?= $data['id_user'] ?>">
             <div class="col-md-6">
                 <label for="nip" class="form-label">NIP</label>
                 <input type="text" class="form-control" id="nip" name="nip" value="<?= $data['nip'] ?>" disabled>
@@ -37,7 +36,7 @@ $getKategoriGolongan = mysqli_query($koneksi, "SELECT * FROM k_golongan"); // me
             <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control disabled" id="password" name="password"
-                    value="<?= $data['password'] ?>" disabled>
+                    value="hackdongsayang❤️❤️❤️" disabled>
             </div>
 
             <div class="col-md-6">
