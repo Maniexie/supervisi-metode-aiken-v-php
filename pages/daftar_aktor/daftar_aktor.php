@@ -46,6 +46,7 @@ $no = $offset + 1; // nomor urut
                 <thead>
                     <tr>
                         <th scope="col">No</th>
+                        <th scope="col">NIP</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Jabatan</th>
                         <th scope="col">Validator</th>
@@ -56,6 +57,7 @@ $no = $offset + 1; // nomor urut
                     <?php foreach ($getDataAktor as $row): ?>
                         <tr>
                             <th scope="row"><?= $no++ ?></th>
+                            <td><?= $row['nip'] ?></td>
                             <td><?= $row['nama'] ?></td>
                             <td><?= $row['nama_jabatan'] ?></td>
                             <td><?= $row['is_validator'] == "Ya" ? "✅" : "❌" ?>
@@ -96,6 +98,27 @@ $no = $offset + 1; // nomor urut
 </section>
 </div>
 </div>
+
+<!-- CONFIRM DELETE ALERT -->
+<script>
+    function confirmDelete(deleteUrl) {
+        Swal.fire({
+            title: 'Hapus Data Aktor',
+            text: 'Apakah Anda yakin ingin menghapus data aktor?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batalkan'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = deleteUrl;
+            }
+        });
+    }
+</script>
+
 
 
 <?php if (isset($_SESSION['success'])): ?>

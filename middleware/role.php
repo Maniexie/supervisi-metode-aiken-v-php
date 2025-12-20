@@ -8,14 +8,17 @@ function checkRoleAccess($page)
         'operator' => [
             'dashboard',
             'profil',
-            'kategori_item_penilaian',
             'item_penilaian',
             'hasil_uji_validitas',
             'kelola_item_penilaian',
             'daftar_aktor',
             'edit_aktor',
             'hapus_aktor',
-            'tambah_aktor'
+            'tambah_aktor',
+            'kategori_penilaian',
+            'edit_kategori_penilaian',
+            'hapus_kategori_penilaian',
+            'tambah_kategori_penilaian'
         ],
         'guru' => ['dashboard'],
         'kepala_sekolah' => ['dashboard']

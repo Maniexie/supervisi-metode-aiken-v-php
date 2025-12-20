@@ -13,10 +13,20 @@ $allowedPages = [
     'hapus_aktor' => 'pages/daftar_aktor/hapus_aktor.php',
     'tambah_aktor' => 'pages/daftar_aktor/tambah_aktor.php',
 
-    // Supervisi
-    'kategori_item_penilaian' => 'pages/supervisi/kategori_item_penilaian.php',
+    // Sidebar -> Supervisi
+
+    //Supervisi -> Kategori Penilaian
+    'kategori_penilaian' => 'pages/supervisi/kategori_penilaian/kategori_penilaian.php',
+    'edit_kategori_penilaian' => 'pages/supervisi/kategori_penilaian/edit_kategori_penilaian.php',
+    'hapus_kategori_penilaian' => 'pages/supervisi/kategori_penilaian/hapus_kategori_penilaian.php',
+    'tambah_kategori_penilaian' => 'pages/supervisi/kategori_penilaian/tambah_kategori_penilaian.php',
+
+    //Supervisi -> Item Penilaian
     'item_penilaian' => 'pages/supervisi/item_penilaian.php',
+
+    //Supervisi -> Hasil Uji Validitas
     'hasil_uji_validitas' => 'pages/supervisi/hasil_uji_validitas.php',
+    //Supervisi -> Kelola Item Penilaian
     'kelola_item_penilaian' => 'pages/supervisi/kelola_item_penilaian.php',
 
 ];
@@ -34,8 +44,17 @@ switch ($page) {
     case 'profil':
         $title = "Profil Page";
         break;
-    case 'kategori_item_penilaian':
-        $title = "Kategori Item Penilaian Page";
+    case 'kategori_penilaian':
+        $title = "Kategori Penilaian Page";
+        break;
+    case 'edit_kategori_penilaian':
+        $title = "Edit Kategori Penilaian Page";
+        break;
+    case 'hapus_kategori_penilaian':
+        $title = "Hapus Kategori Penilaian Page";
+        break;
+    case 'tambah_kategori_penilaian':
+        $title = "Tambah Kategori Penilaian Page";
         break;
     case 'item_penilaian':
         $title = "Item Penilaian Page";

@@ -57,7 +57,7 @@ if ($_SESSION['role'] == 'kepala_sekolah') {
                     <div class="collapse ps-3 mt-1" id="supervisi">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link text-white sub-list" href="index.php?page=kategori_item_penilaian">
+                                <a class="nav-link text-white sub-list" href="index.php?page=kategori_penilaian">
                                     Kategori Item Penilaian
                                 </a>
                             </li>
