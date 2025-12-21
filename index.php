@@ -15,6 +15,11 @@ $allowedPages = [
 
     // Sidebar -> Supervisi
 
+    //Supervisi -> Kuesioner Uji Validitas
+    'kuesioner_uji_validitas' => 'pages/supervisi/kuesioner_uji_validitas/kuesioner_uji_validitas.php',
+    'daftar_versi_kuesioner_uji_validitas' => 'pages/supervisi/kuesioner_uji_validitas/daftar_versi_kuesioner_uji_validitas.php',
+    'intro_kuesioner_uji_validitas' => 'pages/supervisi/kuesioner_uji_validitas/intro_kuesioner_uji_validitas.php',
+
     //Supervisi -> Kategori Penilaian
     'kategori_penilaian' => 'pages/supervisi/kategori_penilaian/kategori_penilaian.php',
     'edit_kategori_penilaian' => 'pages/supervisi/kategori_penilaian/edit_kategori_penilaian.php',
@@ -29,7 +34,8 @@ $allowedPages = [
     'detail_item_penilaian' => 'pages/supervisi/item_penilaian/detail_item_penilaian.php',
 
     //Supervisi -> Hasil Uji Validitas
-    'hasil_uji_validitas' => 'pages/supervisi/hasil_uji_validitas.php',
+    'hasil_uji_validitas' => 'pages/supervisi/hasil_uji_validitas/hasil_uji_validitas.php',
+    'daftar_versi_hasil_uji_validitas' => 'pages/supervisi/hasil_uji_validitas/daftar_versi_hasil_uji_validitas.php',
     //Supervisi -> Kelola Item Penilaian
     'kelola_item_penilaian' => 'pages/supervisi/kelola_item_penilaian.php',
 
@@ -48,6 +54,15 @@ switch ($page) {
     case 'profil':
         $title = "Profil Page";
         break;
+    case 'kuesioner_uji_validitas':
+        $title = "Kuesioner Uji Validitas Page";
+        break;
+    case 'daftar_versi_kuesioner_uji_validitas':
+        $title = "Daftar Versi Kuesioner Uji Validitas Page";
+        break;
+    case 'intro_kuesioner_uji_validitas':
+        $title = "Intro Kuesioner Uji Validitas Page";
+        break;
     case 'kategori_penilaian':
         $title = "Kategori Penilaian Page";
         break;
@@ -63,9 +78,7 @@ switch ($page) {
     case 'item_penilaian':
         $title = "Item Penilaian Page";
         break;
-    case 'hasil_uji_validitas':
-        $title = "Hasil Uji Validitas Page";
-        break;
+
     case 'kelola_item_penilaian':
         $title = "Kelola Item Penilaian Page";
         break;
@@ -92,6 +105,13 @@ switch ($page) {
         break;
     case 'detail_item_penilaian':
         $title = "Detail Item Penilaian Page";
+        break;
+
+    case 'hasil_uji_validitas':
+        $title = "Hasil Uji Validitas Page";
+        break;
+    case 'daftar_versi_hasil_uji_validitas':
+        $title = "Daftar Versi Hasil Uji Validitas Page";
         break;
     case 'logout':
         $title = "Logout Page";

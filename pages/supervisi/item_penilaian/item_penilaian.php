@@ -26,6 +26,7 @@ FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian =
                         <th scope="col">Item Penilaian</th>
                         <th scope="col">Kategori</th>
                         <th scope="col">Versi</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -38,6 +39,14 @@ FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian =
                             <td><?= $row['pernyataan'] ?></td>
                             <td><?= $row['nama_kategori_penilaian'] ?></td>
                             <td><?= $row['versi'] ?></td>
+                            <?php
+                            if ($row['status_item'] == 'aktif') {
+                                $row['status_item'] = '<span class="badge bg-white">✅</span>';
+                            } else {
+                                $row['status_item'] = '<span class="badge bg-white">❌</span>';
+                            }
+                            ?>
+                            <td><?= $row['status_item'] ?></td>
                             <td>
                                 <!-- <a
                                     href="index.php?page=edit_item_penilaian&id_item_penilaian=<?= $row['id_item_penilaian'] ?>"><i

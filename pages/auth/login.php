@@ -34,12 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['nama'] = $user['nama'];
-
+            $_SESSION['is_validator'] = $user['is_validator'];
             $_SESSION['login_success'] = 'Login berhasil!';
 
             $loginSukses = true;
-            // header('Location: index.php?page=dashboard');
-
         } else {
             // jika password salah
             $loginError = "Username atau password salah!";

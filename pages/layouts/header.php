@@ -1,7 +1,7 @@
 <?php
-// echo 'ini adalah halaman Dashboard';
-// echo '$_SESSION[id_user] : ' . $_SESSION['csrf_token'];
-$BASE_URL = 'http://localhost/supervisi';
+require_once __DIR__ . '/../../koneksi.php';
+define('BASE_URL', 'http://192.168.100.5/supervisi/');
+$BASE_URL = BASE_URL;
 
 $role = '';
 if ($_SESSION['role'] == 'kepala_sekolah') {
@@ -11,6 +11,8 @@ if ($_SESSION['role'] == 'kepala_sekolah') {
 } else if ($_SESSION['role'] == 'guru') {
     $role = 'Guru';
 }
+
+$isValidator = $_SESSION['is_validator'];
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +47,11 @@ if ($_SESSION['role'] == 'kepala_sekolah') {
                 <li class="nav-item"><a href="index.php?page=dashboard" class="nav-link"
                         aria-current="page">Dashboard</a></li>
                 <li class="nav-item"><a href="index.php?page=profil" class="nav-link">Profil</a></li>
-                <li class="nav-item"><a href="index.php?page=daftar_aktor" class="nav-link">Daftar Aktor</a></li>
+
+                <?php if ($_SESSION['role'] == 'operator'): ?>
+                    <li class="nav-item"><a href="index.php?page=daftar_aktor" class="nav-link">Daftar Aktor</a></li>
+                <?php endif; ?>
+
                 <li class="nav-item">
                     <a class="nav-link text-white d-flex justify-content-between align-items-center"
                         data-bs-toggle="collapse" href="#supervisi" role="button" aria-expanded="false"
@@ -56,26 +62,38 @@ if ($_SESSION['role'] == 'kepala_sekolah') {
 
                     <div class="collapse ps-3 mt-1" id="supervisi">
                         <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-white sub-list" href="index.php?page=kategori_penilaian">
-                                    Kategori Item Penilaian
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white sub-list" href="index.php?page=item_penilaian">
-                                    Item Penilaian
-                                </a>
-                            </li>
-                            <li class="nav-item test">
-                                <a class="nav-link text-white sub-list" href="index.php?page=hasil_uji_validitas">
-                                    Hasil Uji Validitas
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white sub-list" href="index.php?page=kelola_item_penilaian">
-                                    Kelola Item Penilaian
-                                </a>
-                            </li>
+                            <?php if ($isValidator && ($_SESSION['role'] == 'kepala_sekolah') || $_SESSION['role'] == 'guru'): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white sub-list"
+                                        href="index.php?page=daftar_versi_kuesioner_uji_validitas">
+                                        Kuesioner Uji Validitas
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($_SESSION['role'] == 'operator') { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white sub-list" href="index.php?page=kategori_penilaian">
+                                        Kategori Item Penilaian
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white sub-list" href="index.php?page=item_penilaian">
+                                        Item Penilaian
+                                    </a>
+                                </li>
+                                <li class="nav-item test">
+                                    <a class="nav-link text-white sub-list"
+                                        href="index.php?page=daftar_versi_hasil_uji_validitas">
+                                        Hasil Uji Validitas
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white sub-list" href="index.php?page=kelola_item_penilaian">
+                                        Kelola Item Penilaian
+                                    </a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </li>
