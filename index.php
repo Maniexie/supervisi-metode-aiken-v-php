@@ -22,7 +22,11 @@ $allowedPages = [
     'tambah_kategori_penilaian' => 'pages/supervisi/kategori_penilaian/tambah_kategori_penilaian.php',
 
     //Supervisi -> Item Penilaian
-    'item_penilaian' => 'pages/supervisi/item_penilaian.php',
+    'item_penilaian' => 'pages/supervisi/item_penilaian/item_penilaian.php',
+    'edit_item_penilaian' => 'pages/supervisi/item_penilaian/edit_item_penilaian.php',
+    'hapus_item_penilaian' => 'pages/supervisi/item_penilaian/hapus_item_penilaian.php',
+    'tambah_item_penilaian' => 'pages/supervisi/item_penilaian/tambah_item_penilaian.php',
+    'detail_item_penilaian' => 'pages/supervisi/item_penilaian/detail_item_penilaian.php',
 
     //Supervisi -> Hasil Uji Validitas
     'hasil_uji_validitas' => 'pages/supervisi/hasil_uji_validitas.php',
@@ -76,6 +80,18 @@ switch ($page) {
         break;
     case 'hapus_aktor':
         $title = "Hapus Aktor Page";
+        break;
+    case 'edit_item_penilaian':
+        $title = "Edit Item Penilaian Page";
+        break;
+    case 'hapus_item_penilaian':
+        $title = "Hapus Item Penilaian Page";
+        break;
+    case 'tambah_item_penilaian':
+        $title = "Tambah Item Penilaian Page";
+        break;
+    case 'detail_item_penilaian':
+        $title = "Detail Item Penilaian Page";
         break;
     case 'logout':
         $title = "Logout Page";

@@ -8,17 +8,26 @@ function checkRoleAccess($page)
         'operator' => [
             'dashboard',
             'profil',
-            'item_penilaian',
             'hasil_uji_validitas',
             'kelola_item_penilaian',
+
+            //daftar aktor
             'daftar_aktor',
             'edit_aktor',
             'hapus_aktor',
             'tambah_aktor',
+            //Supervisi -> Kategori Penilaian
             'kategori_penilaian',
             'edit_kategori_penilaian',
             'hapus_kategori_penilaian',
-            'tambah_kategori_penilaian'
+            'tambah_kategori_penilaian',
+
+            //Supervisi -> Item Penilaian
+            'item_penilaian',
+            'edit_item_penilaian',
+            'hapus_item_penilaian',
+            'tambah_item_penilaian',
+            'detail_item_penilaian'
         ],
         'guru' => ['dashboard'],
         'kepala_sekolah' => ['dashboard']
