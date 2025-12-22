@@ -2,8 +2,22 @@
 require_once __DIR__ . '/../../../pages/layouts/header.php';
 require_once __DIR__ . '/../../../koneksi.php';
 
-$getItemPenilaian = mysqli_query($koneksi, "SELECT *, k_penilaian.nama_kategori_penilaian 
-FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian = k_penilaian.kode_kategori_penilaian ORDER BY kode_item_penilaian ASC");
+// Mengambil data item penilaian semua versi
+// $getItemPenilaian = mysqli_query($koneksi, " SELECT * , k_penilaian.nama_kategori_penilaian FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian = k_penilaian.kode_kategori_penilaian ORDER BY id_item_penilaian  ASC"); // mengambil data item penilaian dari tabel item_penilaian
+
+// Query to get the latest version of each kode_item_penilaian
+$getItemPenilaian = mysqli_query($koneksi, "SELECT ip.*, kp.nama_kategori_penilaian
+FROM item_penilaian ip
+JOIN (
+    SELECT kode_item_penilaian, MAX(versi) AS versi_terakhir
+    FROM item_penilaian
+    GROUP BY kode_item_penilaian
+) v ON ip.kode_item_penilaian = v.kode_item_penilaian
+   AND ip.versi = v.versi_terakhir
+JOIN k_penilaian kp
+  ON ip.kode_kategori_penilaian = kp.kode_kategori_penilaian
+ORDER BY ip.kode_item_penilaian ASC;
+"); // mengambil data item penilaian dari tabel item_penilaian
 
 ?>
 
@@ -13,7 +27,6 @@ FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian =
 <section>
     <div class="content">
         <h2 class="content-title text-center">Item Penilaian</h2>
-        <p>Note : Fitur berjalan hanya tambah item penilaian</p>
         <div class="container" style="margin-bottom: -20px;">
             <a href="index.php?page=tambah_item_penilaian" class="btn btn-primary">+ Tambah Item Penilaian</a>
         </div>
@@ -27,7 +40,9 @@ FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian =
                         <th scope="col">Kategori</th>
                         <th scope="col">Versi</th>
                         <th scope="col">Status</th>
+                        <!-- <th scope="col">Validitas</th> -->
                         <th scope="col">Aksi</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -48,16 +63,14 @@ FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian =
                             ?>
                             <td><?= $row['status_item'] ?></td>
                             <td>
-                                <!-- <a
-                                    href="index.php?page=edit_item_penilaian&id_item_penilaian=<?= $row['id_item_penilaian'] ?>"><i
-                                        class="fa-solid fa-pen-to-square"></i></a> -->
                                 <a
-                                    href="index.php?page=detail_item_penilaian&id_item_penilaian=<?= $row['id_item_penilaian'] ?>"><i
+                                    href="index.php?page=edit_item_penilaian&id_item_penilaian=<?= $row['id_item_penilaian'] ?>"><i
                                         class="fa-solid fa-pen-to-square"></i></a>
                                 <a href="javascript:void(0)"
                                     onclick="konfirmasiDelete('index.php?page=hapus_item_penilaian&id_item_penilaian=<?= $row['id_item_penilaian'] ?>')"><i
                                         class="fa-solid fa-trash-can"></i></a>
                             </td>
+
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -69,8 +82,8 @@ FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian =
 <script>
     function konfirmasiDelete(deleteUrl) {
         Swal.fire({
-            title: 'Hapus Data kategori Penilaian',
-            html: `Anda yakin ingin menghapus data kategori penilaian?`,
+            title: 'Hapus Data Item Penilaian',
+            html: `Anda yakin ingin menghapus data item penilaian?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',

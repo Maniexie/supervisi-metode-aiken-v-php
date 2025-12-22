@@ -29,6 +29,7 @@ function checkRoleAccess($page)
             'hapus_item_penilaian',
             'tambah_item_penilaian',
             'detail_item_penilaian',
+            'revisi_item_penilaian',
 
             //Supervisi -> Hasil Uji Validitas
             'hasil_uji_validitas',

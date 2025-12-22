@@ -32,6 +32,7 @@ $allowedPages = [
     'hapus_item_penilaian' => 'pages/supervisi/item_penilaian/hapus_item_penilaian.php',
     'tambah_item_penilaian' => 'pages/supervisi/item_penilaian/tambah_item_penilaian.php',
     'detail_item_penilaian' => 'pages/supervisi/item_penilaian/detail_item_penilaian.php',
+    'revisi_item_penilaian' => 'pages/supervisi/item_penilaian/revisi_item_penilaian.php',
 
     //Supervisi -> Hasil Uji Validitas
     'hasil_uji_validitas' => 'pages/supervisi/hasil_uji_validitas/hasil_uji_validitas.php',
@@ -77,6 +78,9 @@ switch ($page) {
         break;
     case 'item_penilaian':
         $title = "Item Penilaian Page";
+        break;
+    case 'revisi_item_penilaian':
+        $title = "Revisi Item Penilaian Page";
         break;
 
     case 'kelola_item_penilaian':

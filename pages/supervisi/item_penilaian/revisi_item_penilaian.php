@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../../pages/layouts/header.php';
 require_once __DIR__ . '/../../../koneksi.php';
 
+$getVersi = $_GET['versi'];
 $getIdItemPenilaian = $_GET['id_item_penilaian'];
 
 // ambil data item
@@ -10,14 +11,24 @@ $item = mysqli_fetch_assoc(mysqli_query($koneksi, "
     WHERE id_item_penilaian='$getIdItemPenilaian'
 "));
 
+// cek versi terakhir
+$cekVersi = mysqli_fetch_assoc(mysqli_query($koneksi, "
+    SELECT MAX(versi) AS versi_terakhir
+    FROM item_penilaian
+    WHERE kode_item_penilaian='{$item['kode_item_penilaian']}'
+"));
+
+if ($cekVersi['versi_terakhir'] > $item['versi']) {
+    die('Item ini sudah direvisi, tidak dapat direvisi ulang.');
+}
+
 
 $error = false;
 $error_message = '';
 
 $old_pernyataan = $_POST['pernyataan'] ?? '';
 
-$getDataItemPenilaian = mysqli_query($koneksi, " SELECT * , nama_kategori_penilaian FROM item_penilaian 
-JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian = k_penilaian.kode_kategori_penilaian where id_item_penilaian = '$getIdItemPenilaian'"); // mengambil data item penilaian dari tabel item_penilaian
+$getDataItemPenilaian = mysqli_query($koneksi, " SELECT * , nama_kategori_penilaian FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian = k_penilaian.kode_kategori_penilaian where id_item_penilaian = '$getIdItemPenilaian'"); // mengambil data item penilaian dari tabel item_penilaian
 $dataItemPenilaian = mysqli_fetch_array($getDataItemPenilaian);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -25,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $kode_kategori_penilaian = $_POST['kode_kategori_penilaian'];
     $id_operator = $_SESSION['id_user'];
     $pernyataan = trim($_POST['pernyataan']);
-    $versi = $_POST['versi'];
     $status_item = $_POST['status_item'];
+    $versi = $getVersi + 1;
 
 
     if ($error) {
@@ -35,13 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     } else {
         // Jika tidak ada error, lanjutkan proses penyimpanan data
-        $stmt = $koneksi->prepare("UPDATE item_penilaian SET kode_kategori_penilaian=?, kode_item_penilaian=?,  id_operator=?, pernyataan=?, versi=?, status_item=? WHERE id_item_penilaian=?");
-        $stmt->bind_param("ssisisi", $kode_kategori_penilaian, $kode_item_penilaian, $id_operator, $pernyataan, $versi, $status_item, $getIdItemPenilaian);
+        $stmt = $koneksi->prepare("INSERT INTO item_penilaian (kode_item_penilaian, kode_kategori_penilaian, id_operator, pernyataan, versi, status_item) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssisis", $kode_item_penilaian, $kode_kategori_penilaian, $id_operator, $pernyataan, $versi, $status_item);
         $stmt->execute();
         echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     Swal.fire({
-        title: "Proses Edit Item Penilaian",
+        title: "Proses Revisi Item Penilaian",
         timer: 1500,
         didOpen: () => {
             Swal.showLoading();
@@ -49,11 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }).then(() => {
         Swal.fire({
             icon: "success",
-            title: "Item Penilaian Berhasil di Edit",
+            title: "Item Penilaian Berhasil di Revisi",
             showConfirmButton: true,
             timer: 3000
         }).then(() => {
-            window.location.href = `index.php?page=item_penilaian`;
+            window.location.href = `index.php?page=daftar_versi_hasil_uji_validitas`;
         });
     });
     </script>';
@@ -91,7 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <!-- Form -->
         <form class="needs-validation" method="post">
-
             <input type="hidden" name="kode_item_penilaian" value="<?= $dataItemPenilaian['kode_item_penilaian'] ?>">
             <div class="col-md">
                 <label for="kode_item_penilaian" class="form-label">Kode Item Penilaian</label>
@@ -110,17 +120,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="hidden" name="id_operator" value="<?= $old_id_operator ?>">
             <div class="col-md mt-2">
                 <label for="pernyataan" class="form-label" style="margin-bottom: -10px;">Pernyataan</label>
-                <textarea type="text" class="form-control" id="pernyataan" name="pernyataan"
-                    value="<?= $dataItemPenilaian['pernyataan'] ?>" required autofocus>
-                        <?= htmlspecialchars($dataItemPenilaian['pernyataan']) ?>
+                <textarea type="textarea" class="form-control" id="pernyataan" name="pernyataan" value="" required
+                    autofocus>
+                    <?= htmlspecialchars($old_pernyataan) ?>
                 </textarea>
             </div>
-
-            <input type="hidden" name="versi" value="<?= $dataItemPenilaian['versi'] ?>">
             <div class="col-md mt-2">
                 <label for="versi" class="form-label" style="margin-bottom: -10px;">Versi</label>
-                <input type="text" class="form-control" id="versi" value="<?= $dataItemPenilaian['versi'] ?>" required
-                    disabled>
+                <input type="text" class="form-control" id="versi" name="versi" value="<?= $getVersi + 1 ?>">
             </div>
 
             <div class="col-md mt-2">
@@ -136,17 +143,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <select class=" form-select" id="status_item" name="status_item" required>
                     <option selected disabled value="">== Status Item ==</option>
                     <?php foreach ($status_item as $value => $label): ?>
-                        <option value="<?= $value ?>" <?= ($dataItemPenilaian['status_item'] == $value) ? 'selected' : '' ?>>
+                        <option value="<?= $value ?>">
                             <?= $label ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
+
             <div class="col-12 mt-2">
                 <button class="btn btn-primary" type="submit" name="submit">Submit</button>
             </div>
-
         </form>
     </div>
 </section>

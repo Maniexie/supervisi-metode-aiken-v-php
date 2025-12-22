@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../koneksi.php';
-define('BASE_URL', 'http://192.168.100.5/supervisi/');
-$BASE_URL = BASE_URL;
+// define('BASE_URL', 'http://localhost/supervisi');
+// $BASE_URL = BASE_URL;
 
 $role = '';
 if ($_SESSION['role'] == 'kepala_sekolah') {
@@ -22,7 +22,9 @@ $isValidator = $_SESSION['is_validator'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="<?php echo $BASE_URL ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
+
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOj1EOiFqcLo7l6rXmdpmOZFTobbGdgm225pTqoa0UCEhSh+Q5x8vnX2cvX/7+/Lw==" crossorigin="anonymous">
@@ -32,16 +34,12 @@ $isValidator = $_SESSION['is_validator'];
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-
-<style>
-
-</style>
-
 <body>
     <div class="admin-container">
         <!-- Sidebar Navigation -->
         <nav class="sidebar ">
             <h4>Supervisi</h4>
+            <!-- <p><?= BASE_URL ?></p> -->
             <hr>
             <ul class="nav flex-column">
                 <li class="nav-item"><a href="index.php?page=dashboard" class="nav-link"
@@ -88,19 +86,18 @@ $isValidator = $_SESSION['is_validator'];
                                         Hasil Uji Validitas
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link text-white sub-list" href="index.php?page=kelola_item_penilaian">
                                         Kelola Item Penilaian
                                     </a>
-                                </li>
+                                </li> -->
                             <?php } ?>
                         </ul>
                     </div>
                 </li>
 
-
-                <li class="nav-item"><a class="nav-link" href="#">Pengguna</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Produk</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="#">Pengguna</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Produk</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="logoutAlert()">Logout</a>
                 </li>
         </nav>
