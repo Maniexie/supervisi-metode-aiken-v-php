@@ -38,7 +38,31 @@ $allowedPages = [
     'hasil_uji_validitas' => 'pages/supervisi/hasil_uji_validitas/hasil_uji_validitas.php',
     'daftar_versi_hasil_uji_validitas' => 'pages/supervisi/hasil_uji_validitas/daftar_versi_hasil_uji_validitas.php',
     //Supervisi -> Kelola Item Penilaian
-    'kelola_item_penilaian' => 'pages/supervisi/kelola_item_penilaian.php',
+    // 'kelola_item_penilaian' => 'pages/supervisi/kelola_item_penilaian.php',
+
+    // Supervisi -> Jadwal Supervisi
+    'jadwal_supervisi' => 'pages/supervisi/jadwal_supervisi/jadwal_supervisi.php',
+    'detail_jadwal_supervisi' => 'pages/supervisi/jadwal_supervisi/detail_jadwal_supervisi.php',
+    'tambah_jadwal_supervisi' => 'pages/supervisi/jadwal_supervisi/tambah_jadwal_supervisi.php',
+    'edit_jadwal_supervisi' => 'pages/supervisi/jadwal_supervisi/edit_jadwal_supervisi.php',
+    'hapus_jadwal_supervisi' => 'pages/supervisi/jadwal_supervisi/hapus_jadwal_supervisi.php',
+
+    // Supervisi -> Mulai Supervisi
+    'mulai_supervisi' => 'pages/supervisi/mulai_supervisi/mulai_supervisi.php',
+    'daftar_mulai_supervisi' => 'pages/supervisi/mulai_supervisi/daftar_mulai_supervisi.php',
+
+    //Supervisi -> Hasil Supervisi for Kepsek
+    'hasil_supervisi' => 'pages/supervisi/hasil_supervisi/hasil_supervisi.php',
+    'hasil_supervisi_for_kepsek' => 'pages/supervisi/hasil_supervisi/hasil_supervisi_for_kepsek.php',
+    'detail_hasil_supervisi_for_kepsek' => 'pages/supervisi/hasil_supervisi/detail_hasil_supervisi_for_kepsek.php',
+
+    // Supervisi -> Hasil Supervisi for Guru
+    'hasil_supervisi_for_guru' => 'pages/supervisi/hasil_supervisi/hasil_supervisi_for_guru.php',
+    'detail_hasil_supervisi_for_guru' => 'pages/supervisi/hasil_supervisi/detail_hasil_supervisi_for_guru.php',
+
+    // Supervisi -> Tindak Lanjut Hasil Supervisi for Kepsek
+    'umpan_balik_hasil_supervisi' => 'pages/supervisi/tindak_lanjut_hasil_supervisi/umpan_balik_hasil_supervisi.php',
+    'kirim_umpan_balik_hasil_supervisi' => 'pages/supervisi/tindak_lanjut_hasil_supervisi/kirim_umpan_balik_hasil_supervisi.php',
 
 ];
 
@@ -49,43 +73,20 @@ switch ($page) {
         $title = "Dashboard";
         // $content = "pages/dashboard.php";
         break;
+    // Auth
     case 'login':
         $title = "Login Page";
         break;
+    case 'logout':
+        $title = "Logout Page";
+        break;
+
+    // Profil
     case 'profil':
         $title = "Profil Page";
         break;
-    case 'kuesioner_uji_validitas':
-        $title = "Kuesioner Uji Validitas Page";
-        break;
-    case 'daftar_versi_kuesioner_uji_validitas':
-        $title = "Daftar Versi Kuesioner Uji Validitas Page";
-        break;
-    case 'intro_kuesioner_uji_validitas':
-        $title = "Intro Kuesioner Uji Validitas Page";
-        break;
-    case 'kategori_penilaian':
-        $title = "Kategori Penilaian Page";
-        break;
-    case 'edit_kategori_penilaian':
-        $title = "Edit Kategori Penilaian Page";
-        break;
-    case 'hapus_kategori_penilaian':
-        $title = "Hapus Kategori Penilaian Page";
-        break;
-    case 'tambah_kategori_penilaian':
-        $title = "Tambah Kategori Penilaian Page";
-        break;
-    case 'item_penilaian':
-        $title = "Item Penilaian Page";
-        break;
-    case 'revisi_item_penilaian':
-        $title = "Revisi Item Penilaian Page";
-        break;
 
-    case 'kelola_item_penilaian':
-        $title = "Kelola Item Penilaian Page";
-        break;
+    //Supervisi -> Daftar Aktor
     case 'daftar_aktor':
         $title = "Daftar Aktor Page";
         break;
@@ -98,6 +99,40 @@ switch ($page) {
     case 'hapus_aktor':
         $title = "Hapus Aktor Page";
         break;
+
+
+    //Supervisi -> Kuesioner Uji Validitas
+    case 'kuesioner_uji_validitas':
+        $title = "Kuesioner Uji Validitas Page";
+        break;
+    case 'daftar_versi_kuesioner_uji_validitas':
+        $title = "Daftar Versi Kuesioner Uji Validitas Page";
+        break;
+    case 'intro_kuesioner_uji_validitas':
+        $title = "Intro Kuesioner Uji Validitas Page";
+        break;
+
+    //Supervisi -> Kategori Penilaian
+    case 'kategori_penilaian':
+        $title = "Kategori Penilaian Page";
+        break;
+    case 'edit_kategori_penilaian':
+        $title = "Edit Kategori Penilaian Page";
+        break;
+    case 'hapus_kategori_penilaian':
+        $title = "Hapus Kategori Penilaian Page";
+        break;
+    case 'tambah_kategori_penilaian':
+        $title = "Tambah Kategori Penilaian Page";
+        break;
+
+    //Supervisi -> Item Penilaian
+    case 'item_penilaian':
+        $title = "Item Penilaian Page";
+        break;
+    case 'revisi_item_penilaian':
+        $title = "Revisi Item Penilaian Page";
+        break;
     case 'edit_item_penilaian':
         $title = "Edit Item Penilaian Page";
         break;
@@ -107,19 +142,74 @@ switch ($page) {
     case 'tambah_item_penilaian':
         $title = "Tambah Item Penilaian Page";
         break;
-    case 'detail_item_penilaian':
-        $title = "Detail Item Penilaian Page";
+    case 'kelola_item_penilaian':
+        $title = "Kelola Item Penilaian Page";
         break;
 
+    //Supervisi -> Hasil Uji Validitas
     case 'hasil_uji_validitas':
         $title = "Hasil Uji Validitas Page";
         break;
     case 'daftar_versi_hasil_uji_validitas':
         $title = "Daftar Versi Hasil Uji Validitas Page";
         break;
-    case 'logout':
-        $title = "Logout Page";
+
+    //Supervisi -> Jadwal Supervisi
+    case 'jadwal_supervisi':
+        $title = "Jadwal Supervisi Page";
         break;
+    case 'detail_jadwal_supervisi':
+        $title = "Detail Jadwal Supervisi Page";
+        break;
+    case 'tambah_jadwal_supervisi':
+        $title = "Tambah Jadwal Supervisi Page";
+        break;
+    case 'edit_jadwal_supervisi':
+        $title = "Edit Jadwal Supervisi Page";
+        break;
+    case 'hapus_jadwal_supervisi':
+        $title = "Hapus Jadwal Supervisi Page";
+        break;
+
+    //Supervisi -> Mulai Supervisi
+    case 'mulai_supervisi':
+        $title = "Mulai Supervisi Page";
+        break;
+    case 'daftar_mulai_supervisi':
+        $title = "Daftar Mulai Supervisi Page";
+        break;
+
+    //Supervisi -> Hasil Supervisi
+    case 'hasil_supervisi':
+        $title = "Hasil Supervisi Page";
+        break;
+
+    //Supervisi -> Hasil Supervisi for Kepsek
+    case 'hasil_supervisi_for_kepsek':
+        $title = "Hasil Supervisi for Kepsek Page";
+        break;
+    case 'detail_hasil_supervisi_for_kepsek':
+        $title = "Detail Hasil Supervisi for Kepsek Page";
+        break;
+
+    //Supervisi -> Hasil Supervisi for Guru
+    case 'hasil_supervisi_for_guru':
+        $title = "Hasil Supervisi for Guru Page";
+        break;
+
+
+    //Supervisi -> Tindak Lanjut Hasil Supervisi for Kepsek
+    case 'umpan_balik_hasil_supervisi':
+        $title = "Umpan Balik Hasil Supervisi Page";
+        break;
+    case 'kirim_umpan_balik_hasil_supervisi':
+        $title = "Kirim Umpan Balik Hasil Supervisi Page";
+        break;
+
+
+
+
+    // Error Pages
     case 'forbidden':
         $title = "Forbidden 403 Page";
         break;

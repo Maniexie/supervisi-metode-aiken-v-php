@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../../../pages/layouts/header.php';
 require_once __DIR__ . '/../../../koneksi.php';
+
 $getVersi = $_GET['versi'];
 
 $getDataValidator = mysqli_query($koneksi, "SELECT *,nama_jabatan 
@@ -8,7 +9,6 @@ FROM users JOIN k_jabatan ON users.kode_jabatan = k_jabatan.kode_jabatan WHERE i
 $dataValidator = mysqli_fetch_array($getDataValidator);
 
 $day = date('D');
-
 if ($day == 'Mon') {
     $day = 'Senin';
 } elseif ($day == 'Tue') {
@@ -25,6 +25,26 @@ if ($day == 'Mon') {
     $day = 'Minggu';
 }
 
+// EKSEKUSI KUESIONER UJI VALIDITAS
+// Query untuk memeriksa apakah ada status_item 'tidak_aktif' pada versi yang dimaksud
+$getStatusItemPenilaian = mysqli_query($koneksi, "
+    SELECT status_item 
+    FROM item_penilaian
+    WHERE versi = '$getVersi' AND status_item = 'tidak_aktif'
+");
+
+// Cek apakah ada hasil dari query
+if (mysqli_num_rows($getStatusItemPenilaian) > 0) {
+    // Jika ada status_item yang 'tidak_aktif'
+    echo "<script>
+        alert('Kuesioner Uji Validitas Belum Bisa Dimulai karena ada item yang Tidak Aktif.');
+        window.location.href = 'index.php?page=daftar_versi_kuesioner_uji_validitas';
+    </script>";
+    exit(); // Stop eksekusi lebih lanjut
+} else {
+    // Jika tidak ada item yang statusnya 'tidak_aktif', proses bisa dilanjutkan
+    // Anda bisa melanjutkan ke halaman uji validitas atau kode lainnya di sini
+}
 
 ?>
 

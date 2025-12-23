@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         die('Validasi CSRF Gagal!');
     }
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
     $stmt = $koneksi->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);

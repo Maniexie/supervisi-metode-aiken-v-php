@@ -34,16 +34,15 @@ function checkRoleAccess($page)
             //Supervisi -> Hasil Uji Validitas
             'hasil_uji_validitas',
             'daftar_versi_hasil_uji_validitas',
-        ],
-        'guru' => [
-            'dashboard',
-            'profil',
 
-            //Supervisi -> Kuesioner Uji Validitas
-            'kuesioner_uji_validitas',
-            'daftar_versi_kuesioner_uji_validitas',
-            'intro_kuesioner_uji_validitas',
+            //Supervisi -> Jadwal Supervisi
+            'jadwal_supervisi',
+            'detail_jadwal_supervisi',
+            'tambah_jadwal_supervisi',
+            'edit_jadwal_supervisi',
+            'hapus_jadwal_supervisi',
         ],
+
         'kepala_sekolah' => [
             'dashboard',
             'profil',
@@ -57,7 +56,46 @@ function checkRoleAccess($page)
             'hasil_uji_validitas',
             'daftar_versi_hasil_uji_validitas',
 
-        ]
+            //Supervisi -> Jadwal Supervisi
+            'jadwal_supervisi',
+            'detail_jadwal_supervisi',
+            'tambah_jadwal_supervisi',
+            'edit_jadwal_supervisi',
+            'hapus_jadwal_supervisi',
+
+            // Supervisi -> Mulai Supervisi
+            'mulai_supervisi',
+            'daftar_mulai_supervisi',
+
+            // Supervisi -> Hasil Supervisi
+            'hasil_supervisi',
+            'hasil_supervisi_for_kepsek',
+            'detail_hasil_supervisi_for_kepsek',
+
+            // Supervisi -> Tindak Lanjut Hasil Supervisi for Kepsek
+            'umpan_balik_hasil_supervisi',
+            'kirim_umpan_balik_hasil_supervisi',
+
+        ],
+        'guru' => [
+            'dashboard',
+            'profil',
+
+            //Supervisi -> Kuesioner Uji Validitas
+            'kuesioner_uji_validitas',
+            'daftar_versi_kuesioner_uji_validitas',
+            'intro_kuesioner_uji_validitas',
+
+            //Supervisi -> Jadwal Supervisi
+            'jadwal_supervisi',
+            'detail_jadwal_supervisi',
+            'tambah_jadwal_supervisi',
+            'edit_jadwal_supervisi',
+            'hapus_jadwal_supervisi',
+
+            // Supervisi -> Hasil Supervisi
+            'hasil_supervisi_for_guru',
+        ],
     ];
 
     if (!$role || !isset($rolePages[$role]) || !in_array($page, $rolePages[$role])) {

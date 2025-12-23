@@ -13,6 +13,16 @@ if ($_SESSION['role'] == 'kepala_sekolah') {
 }
 
 $isValidator = $_SESSION['is_validator'];
+
+
+// for mulai supervisi
+$hariini = date('Y-m-d');
+$getJadwalSupervisi = mysqli_query($koneksi, "SELECT * FROM jadwal_supervisi WHERE '$hariini' BETWEEN tanggal_mulai AND tanggal_selesai ORDER BY tanggal_mulai DESC LIMIT 1");
+$jadwalSupervisi = mysqli_fetch_array($getJadwalSupervisi);
+
+// ===================================================//
+
+
 ?>
 
 <!DOCTYPE html>
@@ -92,6 +102,65 @@ $isValidator = $_SESSION['is_validator'];
                                     </a>
                                 </li> -->
                             <?php } ?>
+
+                            <?php if ($isValidator && $_SESSION['role'] == 'kepala_sekolah'): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white sub-list"
+                                        href="index.php?page=daftar_versi_hasil_uji_validitas">
+                                        Hasil Uji Validitas
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($_SESSION['role'] == 'operator' || $_SESSION['role'] == 'guru'): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white sub-list" href="index.php?page=jadwal_supervisi">
+                                        Jadwal Supervisi
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white sub-list" href="index.php?page=hasil_supervisi_for_guru">
+                                        Hasil Supervisi
+                                    </a>
+                                <?php endif; ?>
+
+                                <?php if ($_SESSION['role'] == 'kepala_sekolah'): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white sub-list" href="index.php?page=jadwal_supervisi">
+                                        Jadwal Supervisi
+                                    </a>
+                                </li>
+
+                                <?php if ($jadwalSupervisi): ?>
+                                    <?php $isAktif = ($hariini >= $jadwalSupervisi['tanggal_mulai']
+                                        && $hariini <= $jadwalSupervisi['tanggal_selesai']); ?>
+                                    <?php if ($isAktif): ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white sub-list" href="index.php?page=daftar_mulai_supervisi">
+                                                Mulai Supervisi (Aktif)
+                                            </a>
+                                        </li>
+                                    <?php else: ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white sub-list" disabled>
+                                                Mulai Supervisi (Tidak Aktif)
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <!-- Jika tidak ada jadwal yang ditemukan -->
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white sub-list" disabled>
+                                            Mulai Supervisi (Jadwal tidak ditemukan)
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white sub-list"
+                                        href="index.php?page=hasil_supervisi_for_kepsek">
+                                        Hasil Supervisi
+                                    </a>
+                                <?php endif; ?>
                         </ul>
                     </div>
                 </li>

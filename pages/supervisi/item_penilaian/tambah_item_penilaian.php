@@ -35,7 +35,7 @@ if ($dataKodeItemPenilaian) {
 } else {
     // Jika tidak ada data ditemukan, buat kode item penilaian baru dengan urutan 001
     $last_id = $old_kode_kategori_penilaian . '-001';
-    echo "Kode Item Penilaian Baru: " . $last_id;
+    // echo "Kode Item Penilaian Baru: " . $last_id;
 }
 
 
