@@ -63,6 +63,7 @@ $allowedPages = [
     // Supervisi -> Tindak Lanjut Hasil Supervisi for Kepsek
     'umpan_balik_hasil_supervisi' => 'pages/supervisi/tindak_lanjut_hasil_supervisi/umpan_balik_hasil_supervisi.php',
     'kirim_umpan_balik_hasil_supervisi' => 'pages/supervisi/tindak_lanjut_hasil_supervisi/kirim_umpan_balik_hasil_supervisi.php',
+    'edit_umpan_balik_hasil_supervisi' => 'pages/supervisi/tindak_lanjut_hasil_supervisi/edit_umpan_balik_hasil_supervisi.php',
 
 ];
 
@@ -204,6 +205,9 @@ switch ($page) {
         break;
     case 'kirim_umpan_balik_hasil_supervisi':
         $title = "Kirim Umpan Balik Hasil Supervisi Page";
+        break;
+    case 'edit_umpan_balik_hasil_supervisi':
+        $title = "Edit Umpan Balik Hasil Supervisi Page";
         break;
 
 

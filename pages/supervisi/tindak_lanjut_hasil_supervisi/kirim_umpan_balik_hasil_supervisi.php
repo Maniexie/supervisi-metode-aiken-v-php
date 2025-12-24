@@ -128,9 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="mb-3">
                 <label for="umpan_balik">Umpan balik</label>
-                <textarea class="form-control" id="umpan_balik" name="umpan_balik" required>
-
-                </textarea>
+                <textarea class="form-control" id="umpan_balik" name="umpan_balik" rows="4" cols="50"
+                    required></textarea>
             </div>
 
             <button class="btn btn-primary" type="submit">Kirim</button>

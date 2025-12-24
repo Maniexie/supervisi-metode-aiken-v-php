@@ -75,6 +75,7 @@ function checkRoleAccess($page)
             // Supervisi -> Tindak Lanjut Hasil Supervisi for Kepsek
             'umpan_balik_hasil_supervisi',
             'kirim_umpan_balik_hasil_supervisi',
+            'edit_umpan_balik_hasil_supervisi'
 
         ],
         'guru' => [

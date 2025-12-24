@@ -52,10 +52,15 @@ $namaKepsek = mysqli_fetch_assoc($getNamaKepsek);
 
 $getDataHasilSupervisiTable = mysqli_query(
     $koneksi,
-    "SELECT *,nama_tindak_lanjut FROM hasil_supervisi JOIN k_tindak_lanjut_hasil_supervisi ON k_tindak_lanjut_hasil_supervisi.kode_tindak_lanjut = hasil_supervisi.kode_tindak_lanjut WHERE id_jadwal_supervisi = '$id_jadwal_supervisi' AND id_guru = '$id_guru' ORDER BY id_hasil_supervisi DESC LIMIT 1"
+    "SELECT *,nama_tindak_lanjut 
+    FROM hasil_supervisi 
+    JOIN k_tindak_lanjut_hasil_supervisi ON k_tindak_lanjut_hasil_supervisi.kode_tindak_lanjut = hasil_supervisi.kode_tindak_lanjut 
+    WHERE id_jadwal_supervisi = '$id_jadwal_supervisi' AND id_guru = '$id_guru' ORDER BY id_hasil_supervisi "
 );
 
 $dataHasilSupervisi = mysqli_fetch_assoc($getDataHasilSupervisiTable);
+$id_hasil_supervisi = $dataHasilSupervisi['id_hasil_supervisi'] ?? '';
+
 
 
 
@@ -140,7 +145,7 @@ $dataHasilSupervisi = mysqli_fetch_assoc($getDataHasilSupervisiTable);
                         </a>
                     <?php } else { ?>
                         <a
-                            href="index.php?page=kirim_umpan_balik_hasil_supervisi&id_jadwal_supervisi=<?= $id_jadwal_supervisi ?>&id_guru=<?= $id_guru ?>">
+                            href="index.php?page=edit_umpan_balik_hasil_supervisi&id_jadwal_supervisi=<?= $id_jadwal_supervisi ?>&id_guru=<?= $id_guru ?>&id_hasil_supervisi=<?= $id_hasil_supervisi ?>">
                             <button class="btn btn-warning">Edit Umpan Balik</button>
                         </a>
                     <?php } ?>
