@@ -41,6 +41,16 @@ function checkRoleAccess($page)
             'tambah_jadwal_supervisi',
             'edit_jadwal_supervisi',
             'hapus_jadwal_supervisi',
+
+            // Supervisi -> Hasil Supervisi
+            'hasil_supervisi_for_guru',
+            'detail_hasil_supervisi_for_guru',
+
+            // Supervisi -> Kategori Tindak Lanjut Hasil Supervisi
+            'kategori_tindak_lanjut_hasil_supervisi',
+            'edit_kategori_tindak_lanjut_hasil_supervisi',
+            'hapus_kategori_tindak_lanjut_hasil_supervisi',
+            'tambah_kategori_tindak_lanjut_hasil_supervisi',
         ],
 
         'kepala_sekolah' => [
@@ -75,7 +85,8 @@ function checkRoleAccess($page)
             // Supervisi -> Tindak Lanjut Hasil Supervisi for Kepsek
             'umpan_balik_hasil_supervisi',
             'kirim_umpan_balik_hasil_supervisi',
-            'edit_umpan_balik_hasil_supervisi'
+            'edit_umpan_balik_hasil_supervisi',
+
 
         ],
         'guru' => [
@@ -96,6 +107,7 @@ function checkRoleAccess($page)
 
             // Supervisi -> Hasil Supervisi
             'hasil_supervisi_for_guru',
+            'detail_hasil_supervisi_for_guru',
         ],
     ];
 

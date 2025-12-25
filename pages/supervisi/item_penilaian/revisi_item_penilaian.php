@@ -121,9 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col-md mt-2">
                 <label for="pernyataan" class="form-label" style="margin-bottom: -10px;">Pernyataan</label>
                 <textarea type="textarea" class="form-control" id="pernyataan" name="pernyataan" value="" required
-                    autofocus>
-                    <?= htmlspecialchars($old_pernyataan) ?>
-                </textarea>
+                    autofocus><?= htmlspecialchars($old_pernyataan) ?></textarea>
             </div>
             <div class="col-md mt-2">
                 <label for="versi" class="form-label" style="margin-bottom: -10px;">Versi</label>

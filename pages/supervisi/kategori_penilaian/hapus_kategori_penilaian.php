@@ -19,10 +19,12 @@ if ($getKodeKategoriPenilaian) {
         $namaKategoriPenilaian = $data['nama_kategori_penilaian']; // 👈 SIMPAN NAMA
         $getStmt->close();
 
+
         // 2️⃣ Hapus data kategori penilaian
         $deleteQuery = "DELETE FROM k_penilaian WHERE kode_kategori_penilaian = ?";
         $deleteStmt = $koneksi->prepare($deleteQuery);
         $deleteStmt->bind_param("i", $getKodeKategoriPenilaian);
+
 
         if ($deleteStmt->execute()) {
             $_SESSION['success'] = "ID kategori penilaian <b>$getKodeKategoriPenilaian</b> dengan nama <b>$namaKategoriPenilaian</b> berhasil dihapus.";

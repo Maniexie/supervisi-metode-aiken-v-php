@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../../pages/layouts/header.php';
 require_once __DIR__ . '/../../../koneksi.php';
 
-$getIdItemPenilaian = $_GET['id_item_penilaian'];
+$getIdItemPenilaian = $_GET['id_item_penilaian'] ?: null;
 
 // ambil data item
 $item = mysqli_fetch_assoc(mysqli_query($koneksi, "
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <section>
     <div class="container border rounded p-4 mb-4 mt-2">
         <!-- start get data value -->
-        <h2 class="text-center">Tambah Item Penilaian</h2>
+        <h2 class="text-center">Edit Item Penilaian</h2>
 
         <!-- Form -->
         <form class="needs-validation" method="post">
@@ -111,9 +111,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col-md mt-2">
                 <label for="pernyataan" class="form-label" style="margin-bottom: -10px;">Pernyataan</label>
                 <textarea type="text" class="form-control" id="pernyataan" name="pernyataan"
-                    value="<?= $dataItemPenilaian['pernyataan'] ?>" required autofocus>
-                        <?= htmlspecialchars($dataItemPenilaian['pernyataan']) ?>
-                </textarea>
+                    value="<?= $dataItemPenilaian['pernyataan'] ?>" required
+                    autofocus><?= htmlspecialchars($dataItemPenilaian['pernyataan'] ?? '') ?></textarea>
             </div>
 
             <input type="hidden" name="versi" value="<?= $dataItemPenilaian['versi'] ?>">

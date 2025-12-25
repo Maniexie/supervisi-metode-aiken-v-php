@@ -60,10 +60,20 @@ $allowedPages = [
     'hasil_supervisi_for_guru' => 'pages/supervisi/hasil_supervisi/hasil_supervisi_for_guru.php',
     'detail_hasil_supervisi_for_guru' => 'pages/supervisi/hasil_supervisi/detail_hasil_supervisi_for_guru.php',
 
+
     // Supervisi -> Tindak Lanjut Hasil Supervisi for Kepsek
     'umpan_balik_hasil_supervisi' => 'pages/supervisi/tindak_lanjut_hasil_supervisi/umpan_balik_hasil_supervisi.php',
     'kirim_umpan_balik_hasil_supervisi' => 'pages/supervisi/tindak_lanjut_hasil_supervisi/kirim_umpan_balik_hasil_supervisi.php',
     'edit_umpan_balik_hasil_supervisi' => 'pages/supervisi/tindak_lanjut_hasil_supervisi/edit_umpan_balik_hasil_supervisi.php',
+
+    // Supervisi -> Tindak Lanjut Hasil Supervisi for Guru
+    'tindak_lanjut_hasil_supervisi' => 'pages/supervisi/tindak_lanjut_hasil_supervisi/tindak_lanjut_hasil_supervisi.php',
+
+    // Supervisi -> Kategori Tindak Lanjut Hasil Supervisi
+    'kategori_tindak_lanjut_hasil_supervisi' => 'pages/supervisi/kategori_tindak_lanjut_hasil_supervisi/kategori_tindak_lanjut_hasil_supervisi.php',
+    'edit_kategori_tindak_lanjut_hasil_supervisi' => 'pages/supervisi/kategori_tindak_lanjut_hasil_supervisi/edit_kategori_tindak_lanjut_hasil_supervisi.php',
+    'tambah_kategori_tindak_lanjut_hasil_supervisi' => 'pages/supervisi/kategori_tindak_lanjut_hasil_supervisi/tambah_kategori_tindak_lanjut_hasil_supervisi.php',
+    'hapus_kategori_tindak_lanjut_hasil_supervisi' => 'pages/supervisi/kategori_tindak_lanjut_hasil_supervisi/hapus_kategori_tindak_lanjut_hasil_supervisi.php',
 
 ];
 
@@ -197,6 +207,9 @@ switch ($page) {
     case 'hasil_supervisi_for_guru':
         $title = "Hasil Supervisi for Guru Page";
         break;
+    case 'detail_hasil_supervisi_for_guru':
+        $title = "Detail Hasil Supervisi for Guru Page";
+        break;
 
 
     //Supervisi -> Tindak Lanjut Hasil Supervisi for Kepsek
@@ -208,6 +221,26 @@ switch ($page) {
         break;
     case 'edit_umpan_balik_hasil_supervisi':
         $title = "Edit Umpan Balik Hasil Supervisi Page";
+        break;
+
+    //Supervisi -> Tindak Lanjut Hasil Supervisi for Guru
+    case 'umpan_balik_hasil_supervisi_for_guru':
+        $title = "Umpan Balik Hasil Supervisi for Guru Page";
+        break;
+
+
+    // Supervisi -> Kategori Tindak Lanjut Hasil Supervisi
+    case 'kategori_tindak_lanjut_hasil_supervisi':
+        $title = "Kategori Tindak Lanjut Hasil Supervisi Page";
+        break;
+    case 'edit_kategori_tindak_lanjut_hasil_supervisi':
+        $title = "Edit Kategori Tindak Lanjut Hasil Supervisi Page";
+        break;
+    case 'hapus_kategori_tindak_lanjut_hasil_supervisi':
+        $title = "Hapus Kategori Tindak Lanjut Hasil Supervisi Page";
+        break;
+    case 'tambah_kategori_tindak_lanjut_hasil_supervisi':
+        $title = "Tambah Kategori Tindak Lanjut Hasil Supervisi Page";
         break;
 
 

@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <section>
     <div class="container">
+        <h3 class="text-center">Umpan Balik & Rencana Tindak Lanjut Hasil Supervisi</h3>
         <form action="" method="post">
             <input type="hidden" name="id_jadwal_supervisi" value="<?= $id_jadwal_supervisi ?>">
 
@@ -105,14 +106,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
             <div class="mb-3">
-                <label for="id_guru"> ID Guru</label>
+                <label for="id_guru"> Nama Guru</label>
                 <input type="text" class="form-control" id="id_guru" value="<?= $dataSupervisi['nama_guru'] ?>"
                     readonly>
             </div>
             <div class="mb-3">
                 <label for="nilai"> Nilai</label>
                 <input type="text" class="form-control" id="nilai" name="nilai"
-                    value="<?= $jawabanSupervisi['total_nilai'] * 20 / $jawabanSupervisi['total_item'] ?>" readonly>
+                    value="<?= number_format($jawabanSupervisi['total_nilai'] * 20 / $jawabanSupervisi['total_item'], 0) ?>"
+                    readonly>
             </div>
             <div class="mb-3">
                 <label for="kode_tindak_lanjut" class="form-label">Kode Tindak Lanjut</label>
@@ -120,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <option value="">Pilih Kode Tindak Lanjut</option>
                     <?php
                     while ($kategoriTindakLanjut = mysqli_fetch_assoc($getKategoriTindakLanjut)) {
-                        echo "<option value='" . $kategoriTindakLanjut['kode_tindak_lanjut'] . "'>" . $kategoriTindakLanjut['kode_tindak_lanjut'] . "</option>";
+                        echo "<option value='" . $kategoriTindakLanjut['kode_tindak_lanjut'] . "'>" . '(' . $kategoriTindakLanjut['kode_tindak_lanjut'] . ')' . $kategoriTindakLanjut['nama_tindak_lanjut'] . "</option>";
                     }
                     ?>
 

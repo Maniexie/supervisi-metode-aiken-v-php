@@ -52,9 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
                 <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"
-                    placeholder="Masukkan deskripsi jadwal supervisi">
-                Supervisi akan dilaksanakan pada tanggal tersebut. Harap persiapkan segala sesuatunya dengan baik.
-                </textarea>
+                    placeholder="Masukkan deskripsi jadwal supervisi">Supervisi akan dilaksanakan pada tanggal tersebut. Harap persiapkan segala sesuatunya dengan baik.</textarea>
             </div>
             <button type="submit" class="btn btn-primary mt-3" name="submit">Simpan</button>
         </form>

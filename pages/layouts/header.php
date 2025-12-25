@@ -81,6 +81,12 @@ $jadwalSupervisi = mysqli_fetch_array($getJadwalSupervisi);
 
                             <?php if ($_SESSION['role'] == 'operator') { ?>
                                 <li class="nav-item">
+                                    <a class="nav-link text-white sub-list"
+                                        href="index.php?page=kategori_tindak_lanjut_hasil_supervisi">
+                                        Kategori Tindak Lanjut Hasil Supervisi
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link text-white sub-list" href="index.php?page=kategori_penilaian">
                                         Kategori Item Penilaian
                                     </a>

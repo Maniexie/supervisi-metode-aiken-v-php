@@ -46,8 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!-- Content -->
 <section>
     <div class="container border p-4 mt-4 mb-4">
-
-        <h2>Tambah Jadwal Supervisi</h2>
+        <h2 class='text-center'>Edit Jadwal Supervisi</h2>
         <?php foreach ($getJadwalSupervisi as $jadwal): ?>
             <form action="" method="post">
 
@@ -71,9 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group">
                     <label for="deskripsi">Deskripsi</label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"
-                        placeholder="Masukkan deskripsi jadwal supervisi">
-                        <?= $jadwal['deskripsi'] ?>
-                        </textarea>
+                        placeholder="Masukkan deskripsi jadwal supervisi"><?= $jadwal['deskripsi'] ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3" name="submit">Simpan</button>
             </form>

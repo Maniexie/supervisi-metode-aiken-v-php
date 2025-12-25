@@ -2,22 +2,56 @@
 require_once __DIR__ . '/../../../pages/layouts/header.php';
 require_once __DIR__ . '/../../../koneksi.php';
 
-// Mengambil data item penilaian semua versi
-// $getItemPenilaian = mysqli_query($koneksi, " SELECT * , k_penilaian.nama_kategori_penilaian FROM item_penilaian JOIN k_penilaian ON item_penilaian.kode_kategori_penilaian = k_penilaian.kode_kategori_penilaian ORDER BY id_item_penilaian  ASC"); // mengambil data item penilaian dari tabel item_penilaian
+// jumlah data per halaman
+$limit = 10;
+
+// halaman saat ini dari URL, default 1
+$page_no = isset($_GET['page_no']) ? (int) $_GET['page_no'] : 1;
+if ($page_no < 1)
+    $page_no = 1;
+
+// hitung offset
+$offset = ($page_no - 1) * $limit;
+
 
 // Query to get the latest version of each kode_item_penilaian
-$getItemPenilaian = mysqli_query($koneksi, "SELECT ip.*, kp.nama_kategori_penilaian
-FROM item_penilaian ip
+$queryItemPenilaian = "SELECT item_penilaian.*, k_penilaian.nama_kategori_penilaian
+FROM item_penilaian 
 JOIN (
     SELECT kode_item_penilaian, MAX(versi) AS versi_terakhir
     FROM item_penilaian
     GROUP BY kode_item_penilaian
-) v ON ip.kode_item_penilaian = v.kode_item_penilaian
-   AND ip.versi = v.versi_terakhir
-JOIN k_penilaian kp
-  ON ip.kode_kategori_penilaian = kp.kode_kategori_penilaian
-ORDER BY ip.kode_item_penilaian ASC;
-"); // mengambil data item penilaian dari tabel item_penilaian
+) v ON item_penilaian.kode_item_penilaian = v.kode_item_penilaian
+   AND item_penilaian.versi = v.versi_terakhir
+JOIN k_penilaian
+  ON item_penilaian.kode_kategori_penilaian = k_penilaian.kode_kategori_penilaian
+ORDER BY item_penilaian.kode_item_penilaian ASC LIMIT $offset, $limit
+";
+
+$getItemPenilaian = mysqli_query($koneksi, $queryItemPenilaian); // mengambil data item penilaian dari tabel item_penilaian
+
+
+$queryTotal = "
+SELECT COUNT(*) AS total FROM (
+    SELECT item_penilaian.kode_item_penilaian
+    FROM item_penilaian 
+    JOIN (
+        SELECT kode_item_penilaian, MAX(versi) AS versi_terakhir
+        FROM item_penilaian
+        GROUP BY kode_item_penilaian
+    ) v ON item_penilaian.kode_item_penilaian = v.kode_item_penilaian
+       AND item_penilaian.versi = v.versi_terakhir
+    JOIN k_penilaian
+      ON item_penilaian.kode_kategori_penilaian = k_penilaian.kode_kategori_penilaian
+) total_data
+";
+
+$resultTotal = mysqli_query($koneksi, $queryTotal);
+$rowTotal = mysqli_fetch_assoc($resultTotal);
+
+$totalData = $rowTotal['total'];
+$totalPages = ceil($totalData / $limit);
+$no = $offset + 1;
 
 ?>
 
@@ -36,8 +70,8 @@ ORDER BY ip.kode_item_penilaian ASC;
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Kode</th>
-                        <th scope="col">Item Penilaian</th>
                         <th scope="col">Kategori</th>
+                        <th scope="col">Item Penilaian</th>
                         <th scope="col">Versi</th>
                         <th scope="col">Status</th>
                         <!-- <th scope="col">Validitas</th> -->
@@ -46,13 +80,12 @@ ORDER BY ip.kode_item_penilaian ASC;
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no = 1;
-                    foreach ($getItemPenilaian as $row): ?>
+                    <?php foreach ($getItemPenilaian as $row): ?>
                         <tr>
                             <th scope="row"><?= $no++ ?></th>
                             <td><?= $row['kode_item_penilaian'] ?></td>
-                            <td><?= $row['pernyataan'] ?></td>
                             <td><?= $row['nama_kategori_penilaian'] ?></td>
+                            <td><?= $row['pernyataan'] ?></td>
                             <td><?= $row['versi'] ?></td>
                             <?php
                             if ($row['status_item'] == 'aktif') {
@@ -75,6 +108,26 @@ ORDER BY ip.kode_item_penilaian ASC;
                     <?php endforeach ?>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    <!-- Previous -->
+                    <li class="page-item <?= ($page_no <= 1) ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=item_penilaian&page_no=<?= $page_no - 1 ?>">Previous</a>
+                    </li>
+
+                    <!-- Nomor halaman -->
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <li class="page-item <?= ($i == $page_no) ? 'active' : '' ?>">
+                            <a class="page-link" href="?page=item_penilaian&page_no=<?= $i ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+
+                    <!-- Next -->
+                    <li class="page-item <?= ($page_no >= $totalPages) ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=item_penilaian&page_no=<?= $page_no + 1 ?>">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
 </section>
 
