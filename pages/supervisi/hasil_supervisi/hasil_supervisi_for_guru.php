@@ -79,8 +79,8 @@ $getAkumulasiNilai = mysqli_query(
                             <td><?= $data['nama_periode'] ?></td>
                             <td><?= $data['nama_guru'] ?></td>
                             <?php
-                            $hasilNilai = $data['nilai_total'] * 20 / $data['jumlah_item_penilaian']
-                                ?>
+                            $hasilNilai = $data['nilai_total'] * 20 / $data['jumlah_item_penilaian'];
+                            ?>
                             <?php
                             if ($hasilNilai >= 85) {
                                 $predikat = "Sangat Baik";
@@ -94,7 +94,7 @@ $getAkumulasiNilai = mysqli_query(
                                 $predikat = "Sangat Kurang";
                             }
                             ?>
-                            <td><?= $data['nilai_total'] ?>(<?= $predikat ?>)</td>
+                            <td><?= $hasilNilai ?>(<?= $predikat ?>)</td>
                             <td><?= $data['tanggal_pengisian'] ?></td>
                             <td>
                                 <a

@@ -3,6 +3,13 @@ require_once __DIR__ . '/../../../pages/layouts/header.php';
 require_once __DIR__ . '/../../../koneksi.php';
 $id_validator = $_SESSION['id_user'];
 
+$isValidator = $_SESSION['is_validator'] == 'Ya' ? true : false;
+
+if (!$isValidator) {
+    header('Location: index.php?page=dashboard');
+    exit;
+}
+
 // mengambil data versi kuesioner uji validitas dari tabel item_penilaian
 // $getVersiItemPenilaian = mysqli_query($koneksi, "SELECT DISTINCT versi,(
 // SELECT 1 , id_validator FROM jawaban_validator WHERE id_validator = '$id_validator' AND jawaban_validator.versi = item_penilaian.versi) AS 'sudah_diisi'

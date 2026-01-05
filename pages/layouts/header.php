@@ -12,7 +12,7 @@ if ($_SESSION['role'] == 'kepala_sekolah') {
     $role = 'Guru';
 }
 
-$isValidator = $_SESSION['is_validator'];
+$isValidator = $_SESSION['is_validator'] == 'Ya' ? true : false;
 
 
 // for mulai supervisi
@@ -70,7 +70,7 @@ $jadwalSupervisi = mysqli_fetch_array($getJadwalSupervisi);
 
                     <div class="collapse ps-3 mt-1" id="supervisi">
                         <ul class="nav flex-column">
-                            <?php if ($isValidator && ($_SESSION['role'] == 'kepala_sekolah') || $_SESSION['role'] == 'guru'): ?>
+                            <?php if ($isValidator): ?>
                                 <li class="nav-item">
                                     <a class="nav-link text-white sub-list"
                                         href="index.php?page=daftar_versi_kuesioner_uji_validitas">

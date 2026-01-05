@@ -4,6 +4,15 @@ require_once __DIR__ . '/../koneksi.php';
 
 $id_user = $_SESSION['id_user'];
 
+$role = '';
+if ($_SESSION['role'] == 'kepala_sekolah') {
+    $role = 'Kepala Sekolah';
+} else if ($_SESSION['role'] == 'operator') {
+    $role = 'Operator';
+} else if ($_SESSION['role'] == 'guru') {
+    $role = 'Guru';
+}
+
 $getProfil = mysqli_query($koneksi, "SELECT * FROM users WHERE id_user = '$id_user'");
 $data = mysqli_fetch_assoc($getProfil);
 
@@ -17,7 +26,7 @@ $getKategoriGolongan = mysqli_query($koneksi, "SELECT * FROM k_golongan"); // me
 <!-- Content -->
 <section>
     <div class="container border p-4 mt-4">
-        <h2 class="text-center">Profil (<span class="text-uppercase"><?= $_SESSION['role'] ?></span>)</h2>
+        <h2 class="text-center">Profil (<span class=""><?= $role ?></span>)</h2>
         <!-- Form -->
         <form class="row g-2 needs-validation">
             <div class="col-md-6">

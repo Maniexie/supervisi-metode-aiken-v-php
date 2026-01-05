@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <section>
     <div class="container border rounded p-4 mb-4 mt-2">
         <!-- start get data value -->
-        <h2 class="text-center">Tambah Item Penilaian</h2>
+        <h2 class="text-center">Revisi Item Penilaian</h2>
 
         <!-- Form -->
         <form class="needs-validation" method="post">

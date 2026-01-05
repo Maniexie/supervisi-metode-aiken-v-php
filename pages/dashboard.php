@@ -10,12 +10,12 @@ if (!isset($_SESSION['id_user'])) {
 ?>
 <!-- Cards/Content -->
 
-<section class="cards">
+<!-- <section class="cards">
 
     <div class="card">Data 1</div>
     <div class="card">Data 2</div>
     <div class="card">Data 3</div>
-</section>
+</section> -->
 
 
 <?php

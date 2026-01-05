@@ -1,7 +1,12 @@
 <?php
 require_once __DIR__ . '/../../../pages/layouts/header.php';
 require_once __DIR__ . '/../../../koneksi.php';
+$isValidator = $_SESSION['is_validator'] == 'Ya' ? true : false;
 
+if (!$isValidator) {
+    header('Location: index.php?page=dashboard');
+    exit;
+}
 $getVersi = $_GET['versi'];
 
 $getDataValidator = mysqli_query($koneksi, "SELECT *,nama_jabatan 

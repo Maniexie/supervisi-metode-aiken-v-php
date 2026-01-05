@@ -2,6 +2,12 @@
 require_once __DIR__ . '/../../../pages/layouts/header.php';
 require_once __DIR__ . '/../../../koneksi.php';
 
+$isValidator = $_SESSION['is_validator'] == 'Ya' ? true : false;
+
+if (!$isValidator) {
+    header('Location: index.php?page=dashboard');
+    exit;
+}
 $id_validator = $_SESSION['id_user'];
 $versi = $_GET['versi'];
 
@@ -68,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <section>
     <h2 class="mt-4 text-center">Kuesioner Uji Validitas</h2>
     <div class="container border p-4 mt-4 mb-4">
-        <div class="border border-primary p-3 scrollable" style="max-height: 500px; overflow-y: auto;">
+        <div class="border p-3 scrollable" style="max-height: 500px; overflow-y: auto;">
             <form action="" method="post" id="formUjiValiditas">
                 <?php $no = 1;
                 foreach ($getItemPenilaian as $item): ?>
