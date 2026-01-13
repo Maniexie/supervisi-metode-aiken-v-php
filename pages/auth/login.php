@@ -49,6 +49,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+<style>
+    /* Mengatur tampilan agar konten berada di tengah */
+    .full-vh {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        /* Jarak antara gambar dan form */
+    }
+
+    .text-login {
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .full-vh {
+            flex-direction: column;
+        }
+    }
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,14 +90,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4lL4rvcMPRD1eJYg3ktdqF7i3O4IKO83T8w&s"
-                    alt="">
+    <div class="container ">
+        <div class="row justify-content-center full-vh">
+            <div class="col-md-6">
+                <img src="https://www.riaueditor.com/photo/berita/dir022024/_4035_UPT-SDN-035-Tarai-Bangun--Sekolah-Pertama-yang-Sukses-Membentuk-TPPK.jpg"
+                    class="img-fluid" alt="">
             </div>
-            <div class="col-6">
-
+            <div class="col-md-6">
+                <h2 class="text-center text-login">Login</h2>
                 <form action="" method="post">
                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                     <div class="mb-3">

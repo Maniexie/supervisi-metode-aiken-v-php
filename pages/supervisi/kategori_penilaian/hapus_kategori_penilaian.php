@@ -6,7 +6,7 @@ if ($getKodeKategoriPenilaian) {
     // 1️⃣ Ambil data kategori penilaian SEBELUM dihapus
     $getQuery = "SELECT nama_kategori_penilaian FROM k_penilaian WHERE kode_kategori_penilaian = ?";
     $getStmt = $koneksi->prepare($getQuery);
-    $getStmt->bind_param("i", $getKodeKategoriPenilaian);
+    $getStmt->bind_param("s", $getKodeKategoriPenilaian);
     $getStmt->execute();
     $result = $getStmt->get_result();
 
@@ -23,7 +23,7 @@ if ($getKodeKategoriPenilaian) {
         // 2️⃣ Hapus data kategori penilaian
         $deleteQuery = "DELETE FROM k_penilaian WHERE kode_kategori_penilaian = ?";
         $deleteStmt = $koneksi->prepare($deleteQuery);
-        $deleteStmt->bind_param("i", $getKodeKategoriPenilaian);
+        $deleteStmt->bind_param("s", $getKodeKategoriPenilaian);
 
 
         if ($deleteStmt->execute()) {

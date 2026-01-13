@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../koneksi.php';
-// define('BASE_URL', 'http://localhost/supervisi');
-// $BASE_URL = BASE_URL;
+define('BASE_URL', 'http://localhost/supervisi');
+$BASE_URL = BASE_URL;
 
 $role = '';
 if ($_SESSION['role'] == 'kepala_sekolah') {
